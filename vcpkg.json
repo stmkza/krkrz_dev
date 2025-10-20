@@ -12,6 +12,9 @@
     "picojson",
     "libjpeg-turbo",
     "zlib",
+    "libvpx",
+    "libwebm",
+    "miniaudio",
     "plog",
     "fmt",
     {
@@ -22,7 +25,6 @@
         "bzip2"
       ]
     },
-    "miniaudio",
     {
       "name": "poco",
       "$comment": "プラグイン用: src/plugins/win32/httpserv"
