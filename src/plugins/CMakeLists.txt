@@ -9,7 +9,7 @@ add_subdirectory(tp_stub)
 add_subdirectory(ncbind)
 
 set(PLUGINS
-#KAGParserEx
+KAGParserEx
 addFont
 binaryStream
 csvParser
