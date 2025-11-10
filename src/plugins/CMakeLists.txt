@@ -25,6 +25,7 @@ layerExRaster
 layerExSave
 lineParser
 minizip
+psbfile
 saveStruct
 scriptsEx
 shrinkCopy
@@ -41,8 +42,8 @@ list(APPEND PLUGINS
 memfile
 #psdfile
 varfile
-
 fstat
+gamepad
 menu
 msgreceiver
 stdio
@@ -55,7 +56,7 @@ shellExecute
 process
 messenger
 windowExProgress
-#win32ole
+win32ole
 )
 endif()
 
