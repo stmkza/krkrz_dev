@@ -10,10 +10,32 @@ endif
 
 VCPKG=$(shell $(FIXPATH) "$(VCPKG_ROOT)/vcpkg")
 
-PRESET?=x64-windows
+# Detect OS and set default PRESET accordingly
+ifeq ($(OS),Windows_NT)
+	PRESET?=x64-windows-sdl
+else
+	UNAME_S := $(shell uname -s)
+	UNAME_M := $(shell uname -m)
+	ifeq ($(UNAME_S),Linux)
+		ifeq ($(UNAME_M),aarch64)
+			PRESET?=arm64-linux
+		else
+			PRESET?=x64-linux
+		endif
+	else ifeq ($(UNAME_S),Darwin)
+		ifeq ($(UNAME_M),arm64)
+			PRESET?=arm64-osx
+		else
+			PRESET?=x64-osx
+		endif
+	else
+		PRESET?=x64-windows
+	endif
+endif
+
 BUILD_TYPE?=Release
-CMAKEOPT?=-DUSESJIS=ON
-INSTALL_PREFIX=bin/${BUILD_TYPE}
+CMAKEOPT?="-DUSE_SJIS=ON"
+INSTALL_PREFIX=bin/$(PRESET)/$(BUILD_TYPE)
 
 ifeq ($(DATAPATH),)
 DATAPATH=data
