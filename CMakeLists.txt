@@ -25,7 +25,6 @@ layerExRaster
 layerExSave
 lineParser
 #minizip
-#psbfile
 saveStruct
 scriptsEx
 shrinkCopy
