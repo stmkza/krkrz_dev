@@ -12,7 +12,7 @@ VCPKG=$(shell $(FIXPATH) "$(VCPKG_ROOT)/vcpkg")
 
 # Detect OS and set default PRESET accordingly
 ifeq ($(OS),Windows_NT)
-	PRESET?=x64-windows-sdl
+	PRESET?=x64-windows
 else
 	UNAME_S := $(shell uname -s)
 	UNAME_M := $(shell uname -m)
@@ -37,9 +37,7 @@ BUILD_TYPE?=Release
 CMAKEOPT?="-DUSE_SJIS=ON"
 INSTALL_PREFIX=bin/$(PRESET)/$(BUILD_TYPE)
 
-ifeq ($(DATAPATH),)
-DATAPATH=data
-endif
+DATAPATH?=src/core/data
 
 DATAPATH_ABS=$(shell $(FIXPATH) "$(DATAPATH)")
 
@@ -69,11 +67,13 @@ ifeq (windows,$(findstring windows,$(PRESET)))
 
 ifeq (x64,$(findstring x64,$(PRESET)))
 PLUGINS_SRC_DIR=plugin64
-PLUGINS_DST_DIR=$(BUILD_PATH)/plugin64
+PLUGINS_DST_DIR=$(BUILD_PATH)/$(BUILD_TYPE)/plugin64
+EXEFILE=$(BUILD_PATH)/core/$(BUILD_TYPE)/krkrz64.exe
 else
 ifeq (x86,$(findstring x86,$(PRESET)))
 PLUGINS_SRC_DIR=plugin
-PLUGINS_DST_DIR=$(BUILD_PATH)/plugin
+PLUGINS_DST_DIR=$(BUILD_PATH)/$(BUILD_TYPE)/plugin
+EXEFILE=$(BUILD_PATH)/core/$(BUILD_TYPE)/krkrz.exe
 endif
 endif
 
@@ -82,8 +82,6 @@ PLUGINS = $(patsubst $(PLUGINS_SRC_DIR)/%.dll, $(PLUGINS_DST_DIR)/%.dll, $(wildc
 $(PLUGINS_DST_DIR)/%.dll : $(PLUGINS_SRC_DIR)/%.dll
 	@mkdir -p `dirname $@`
 	cp $< $@
-
-EXEFILE=$(BUILD_PATH)/krkrz.exe
 
 $(EXEFILE): build
 

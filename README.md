@@ -1,6 +1,7 @@
 # 吉里吉里Z 統合リポジトリ 開発用
 
-本体のソースコード、プラグインのソースコード、各種TJS2スクリプト、ドキュメント等開発関係のもの全てが入ったリポジトリ。
+本体のソースコード、プラグインのソースコード、各種TJS2スクリプト、
+ドキュメント等開発関係のもの全てが入ったリポジトリ。
 各種ファイルはサブモジュールで参照されています。
 
 ## 前準備
@@ -53,8 +54,7 @@ cmake --build --preset=x64-windows --config Debug
     build           cmake のビルド呼び出し
     install         cmake のインストール呼び出し
 
-
-win32版（SJIS対応）
+win32版（SJIS対応）で作成する
 
 ```
 export PRESET=x86-windows
@@ -64,11 +64,27 @@ make
 make install
 ```
 
-win64版
+win64版で作成する
 
 ```
 export PRESET=x64-windows
 make prebuild
+make
+make install
+```
+
+### プラグイン作成
+
+TVP_PLUGIN_FOLDERS から、TVP_PLUGINS で定義された名称の
+プラグインがあわせてビルドされます。それぞれリストです
+
+TVP_PLUGINS_STATIC が定義されている場合は、それに含まれる
+プラグインは実行ファイル中に静的にビルトインされます
+
+CMake のリストとして定義するので ;　区切りで必要なものを列挙します
+
+```
+CMAKEOPT='-DUSESJIS=ON -DTVP_PLUGINS_STATIC="json;csvParser"' make prebuild
 make
 make install
 ```
