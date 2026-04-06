@@ -27,7 +27,8 @@
 	url = https://github.com/krkrz/debugger.git
 [submodule "src/core"]
 	path = src/core
-	url = https://github.com/wamsoft/krkrz.git
+	url = https://github.com/stmkza/krkrz.git
+	branch = hotfix/20260404_gl_patches
 [submodule "src/plugins/KAGParserEx"]
 	path = src/plugins/KAGParserEx
 	url = https://github.com/wamsoft/KAGParserEx.git
