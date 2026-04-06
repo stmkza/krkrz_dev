@@ -166,4 +166,4 @@
 	url = https://github.com/wamsoft/gamepad.git
 [submodule "src/plugins/gl3d"]
 	path = src/plugins/gl3d
-	url = git@github.com:stmkza/gl3d.git
+	url = https://github.com/stmkza/gl3d.git
